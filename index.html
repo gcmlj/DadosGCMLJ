@@ -22,6 +22,7 @@
       letter-spacing: 1px;
     }
 
+    /* LOGIN */
     #loginScreen {
       display: flex;
       justify-content: center;
@@ -73,6 +74,18 @@
       margin-top: 10px;
     }
 
+    /* LOADER */
+    #loader {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f4f6f9;
+      font-size: 18px;
+      color: #333;
+    }
+
+    /* SISTEMA */
     #appContainer {
       display: none;
     }
@@ -81,6 +94,7 @@
       width: 100%;
       height: calc(100vh - 60px);
       border: none;
+      display: none;
     }
   </style>
 
@@ -89,19 +103,26 @@
       const usuario = document.getElementById("usuario").value;
       const senha = document.getElementById("senha").value;
 
-      // ALTERE AQUI SEU USUÁRIO E SENHA
+      // 🔐 ALTERE AQUI USUÁRIO E SENHA
       if (usuario === "admin" && senha === "1234") {
         document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("loader").style.display = "flex";
         document.getElementById("appContainer").style.display = "block";
+        document.getElementById("appFrame").style.display = "block";
       } else {
         document.getElementById("erro").innerText = "Usuário ou senha incorretos.";
       }
+    }
+
+    function sistemaCarregado() {
+      document.getElementById("loader").style.display = "none";
     }
   </script>
 </head>
 
 <body>
 
+  <!-- LOGIN -->
   <div id="loginScreen">
     <div class="login-box">
       <h2>SisDados GCMLJ</h2>
@@ -112,13 +133,21 @@
     </div>
   </div>
 
+  <!-- LOADER -->
+  <div id="loader">
+    Carregando sistema...
+  </div>
+
+  <!-- SISTEMA -->
   <div id="appContainer">
     <header>
       SisDados GCMLJ - Sistema de Dados Online GCMLJ
     </header>
 
     <iframe 
-      src="https://script.google.com/macros/s/AKfycbyRmThZlQqTm9_plrDuFFKVJ8ZNS-2PfZDuzwEqAKd49x_ODSj5iYZ5IqBYsyRDRtgQSA/exec">
+      id="appFrame"
+      src="https://script.google.com/macros/s/AKfycbyRmThZlQqTm9_plrDuFFKVJ8ZNS-2PfZDuzwEqAKd49x_ODSj5iYZ5IqBYsyRDRtgQSA/exec"
+      onload="sistemaCarregado()">
     </iframe>
   </div>
 
