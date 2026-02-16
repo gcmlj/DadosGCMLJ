@@ -99,25 +99,27 @@
   </style>
 
   <script>
-    function fazerLogin() {
-      const usuario = document.getElementById("usuario").value;
-      const senha = document.getElementById("senha").value;
+  function fazerLogin() {
+    const usuario = document.getElementById("usuario").value;
+    const senha = document.getElementById("senha").value;
 
-      // 🔐 ALTERE AQUI USUÁRIO E SENHA
-      if (usuario === "admin" && senha === "1234") {
-        document.getElementById("loginScreen").style.display = "none";
-        document.getElementById("loader").style.display = "flex";
-        document.getElementById("appContainer").style.display = "block";
-        document.getElementById("appFrame").style.display = "block";
-      } else {
-        document.getElementById("erro").innerText = "Usuário ou senha incorretos.";
-      }
-    }
+    if (usuario === "admin" && senha === "1234") {
+      document.getElementById("loginScreen").style.display = "none";
+      document.getElementById("loader").style.display = "flex";
+      document.getElementById("appContainer").style.display = "block";
+      document.getElementById("appFrame").style.display = "block";
 
-    function sistemaCarregado() {
-      document.getElementById("loader").style.display = "none";
+      // Força esconder loader após 2 segundos
+      setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+      }, 2000);
+
+    } else {
+      document.getElementById("erro").innerText = "Usuário ou senha incorretos.";
     }
-  </script>
+  }
+</script>
+
 </head>
 
 <body>
